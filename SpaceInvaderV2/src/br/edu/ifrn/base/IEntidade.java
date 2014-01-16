@@ -11,8 +11,8 @@ import java.awt.Graphics;
  */
 public interface IEntidade {
     
-    Graphics desenho();
-    void movimento();
-    boolean colisao();
-    boolean colidido();
+    void desenhar();
+    void movimentar();
+    boolean colidir(Entidade outra);
+    void colidiu(Entidade outra);
 }

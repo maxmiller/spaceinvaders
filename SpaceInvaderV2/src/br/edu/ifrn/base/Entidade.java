@@ -6,6 +6,7 @@ package br.edu.ifrn.base;
 
 import br.edu.ifrn.base.IEntidade;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 /**
  *
  * @author maxmiller
@@ -16,7 +17,10 @@ public class Entidade implements IEntidade{
     private double y;// Posição Y
     private double vx;// Velocidade Eixo X
     private double vy;// Velocidade Eixo Y
-    
+    private Imagem imagem;
+    private Rectangle r1;
+    private Rectangle r2;
+     
     //Get 
      public double getX(){
          return x;
@@ -25,6 +29,8 @@ public class Entidade implements IEntidade{
     public void setX(double x){
         this.x = x;
     }
+    
+    
     /**
      * @return the y
      */
@@ -71,23 +77,45 @@ public class Entidade implements IEntidade{
     
     
     @Override
-    public Graphics desenho(){
-        return null;
+    public void desenhar(){
     }
     
     @Override
-    public void movimento(){
+    public void movimentar(){
         
     }
     
     @Override
-    public boolean colisao(){
-        return false;
+    public boolean colidir(Entidade outra){
+        r1 = new Rectangle();
+        r2 = new Rectangle();
+        r1.setBounds((int)x, (int)y,
+                imagem.getLargura(), 
+                imagem.getAltura());
+        r2.setBounds((int)outra.getX(),
+             (int)outra.getY(),
+             outra.getImagem().getLargura(),
+             outra.getImagem().getAltura());
+        return r1.intersects(r2);
     }
     
     @Override 
-    public boolean colidido(){
-        return false;
+    public void colidiu(Entidade outra){
+        
+    }
+
+    /**
+     * @return the imagem
+     */
+    public Imagem getImagem() {
+        return imagem;
+    }
+
+    /**
+     * @param imagem the imagem to set
+     */
+    public void setImagem(Imagem imagem) {
+        this.imagem = imagem;
     }
 
     
